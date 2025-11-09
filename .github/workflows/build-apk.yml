@@ -19,9 +19,14 @@ jobs:
         with:
           sdk-tools-version: '9477386'
 
+      - name: Install Android Platforms and Tools
+        run: |
+          sdkmanager --update
+          sdkmanager "platforms;android-29" "build-tools;29.0.3"
+
       - name: Set up Android NDK
         uses: nttld/setup-ndk@v1
-        id: setup-ndk  # Add this line for output access
+        id: setup-ndk
         with:
           ndk-version: r26d
 
@@ -31,11 +36,11 @@ jobs:
           targets: aarch64-linux-android,armv7-linux-androideabi
 
       - name: Install cargo-apk
-        run: cargo install cargo-quad-apk  # This should stay as-is from your last fix
+        run: cargo install cargo-quad-apk
 
       - name: Build Release APK
         run: cargo quad-apk build --release
-        env:  # Add this env section
+        env:
           NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Upload APK
