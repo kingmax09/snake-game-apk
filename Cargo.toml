@@ -1,0 +1,12 @@
+[package]
+name = "snake_game"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+macroquad = "0.4.14"
+rand = "0.9.2"
+[package.metadata.android]
+fullscreen = true
+build_targets = ["aarch64-linux-android", "armv7-linux-androideabi"]
+activity_attributes = { "android:exported" = "true" }
