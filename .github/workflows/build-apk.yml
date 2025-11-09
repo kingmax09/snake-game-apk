@@ -29,6 +29,7 @@ jobs:
         id: setup-ndk
         with:
           ndk-version: r26d
+          add_to_path: true  # Add this to include NDK bins in PATH
 
       - name: Set up Rust
         uses: dtolnay/rust-toolchain@stable
@@ -42,6 +43,7 @@ jobs:
         run: cargo quad-apk build --release
         env:
           NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}  # Add this for extra compatibility
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
