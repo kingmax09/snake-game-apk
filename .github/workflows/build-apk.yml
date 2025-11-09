@@ -30,7 +30,7 @@ jobs:
           targets: aarch64-linux-android,armv7-linux-androideabi
 
       - name: Install cargo-apk
-        run: cargo install cargo-apk
+        run: cargo install cargo-quad-apk
 
       - name: Build Release APK
         run: cargo quad-apk build --release
